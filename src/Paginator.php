@@ -132,8 +132,8 @@ class Paginator
     {
         $this->class = $cssClass ?? "paginator";
 
-        // Se o ponteiro for maior ou igual a 2 atribuir "<<"
-            if ($this->page >= 2):
+        // Se o ponteiro for maior que 1, atribuir "<<"
+            if ($this->page > 1):
                 $paginator .= $this->firstPage($fixedFirstAndLastPage);
             endif;
 
@@ -141,7 +141,7 @@ class Paginator
             $paginator .= "<span class=\"{$this->class}_item {$this->class}_active\">{$this->page}</span>";
             $paginator .= $this->afterPages();
 
-            // Se o ponteiro for menor que seu limit atribuir ">>"
+            // Se o ponteiro for menor que seu limit, atribuir ">>"
             if ($this->page < ($this->rows / $this->limit)):
                 $paginator .= $this->lastPage($fixedFirstAndLastPage);
             endif;
