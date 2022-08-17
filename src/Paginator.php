@@ -132,7 +132,9 @@ class Paginator
     {
         $this->class = $cssClass ?? "paginator";
 
-        // Se o ponteiro for maior que 1, atribuir "<<"
+        if ($this->rows > $this->limit):
+            $paginator = "<nav class=\"{$this->class}\">";
+            // Se o ponteiro for maior que 1, atribuir "<<"
             if ($this->page > 1):
                 $paginator .= $this->firstPage($fixedFirstAndLastPage);
             endif;
@@ -145,6 +147,10 @@ class Paginator
             if ($this->page < ($this->rows / $this->limit)):
                 $paginator .= $this->lastPage($fixedFirstAndLastPage);
             endif;
+
+            $paginator .= "</nav>";
+            return $paginator;
+        endif;
 
         return null;
     }
